@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= employee ? "Editar Empleado" : "Agregar Nuevo Empleado" %></h1>
+        <form action="<%= employee ? `/employees/edit/${employee.id}` : '/employees/create' %>" method="POST">
+            <div class="field">
+                <label class="label" for="name">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" id="name" name="name" placeholder="Nombre del empleado" value="<%= employee ? employee.name : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="position_id">Puesto</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="position_id" name="position_id" required>
+                            <% positions.forEach(position => { %>
+                                <option value="<%= position.id %>" <%= employee && employee.position_id === position.id ? "selected" : "" %>>
+                                    <%= position.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="department_id">Departamento</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="department_id" name="department_id" required>
+                            <% departments.forEach(department => { %>
+                                <option value="<%= department.id %>" <%= employee && employee.department_id === department.id ? "selected" : "" %>>
+                                    <%= department.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <div class="control">
+                    <input class="input" type="email" id="email" name="email" placeholder="Correo electrónico" value="<%= employee ? employee.email : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="phone">Teléfono</label>
+                <div class="control">
+                    <input class="input" type="text" id="phone" name="phone" placeholder="Teléfono" value="<%= employee ? employee.phone : '' %>" required>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">Guardar</button>
+                </div>
+                <div class="control">
+                    <a href="/employees" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

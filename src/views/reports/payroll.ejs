@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4 has-text-centered">Reporte de Nóminas y Bonos</h1>
+
+        <!-- Tabla de datos por empleado -->
+        <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead class="has-background-info-light">
+                    <tr class="has-text-centered">
+                        <th>Empleado</th>
+                        <th>Total Salarios</th>
+                        <th>Total Bonos</th>
+                        <th>Total Deducciones</th>
+                        <th>Neto Pagado</th>
+                        <th>Nóminas Generadas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% payrollReport.forEach(report => { %>
+                        <tr>
+                            <td><strong><%= report.employee_name %></strong></td>
+                            <td class="has-text-right">$<%= report.total_salary.toFixed(2) %></td>
+                            <td class="has-text-right has-text-success">$<%= report.total_bonus.toFixed(2) %></td>
+                            <td class="has-text-right has-text-danger">$<%= report.total_deductions.toFixed(2) %></td>
+                            <td class="has-text-right has-text-primary">$<%= report.net_total.toFixed(2) %></td>
+                            <td class="has-text-centered"><%= report.payroll_count %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Estadísticas generales -->
+        <h2 class="title is-5 mt-5 has-text-centered">Estadísticas Generales</h2>
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="box has-background-success-light">
+                    <p><strong>Total Salarios:</strong> $<%= generalStatistics.total_salary.toFixed(2) %></p>
+                    <p><strong>Total Bonos:</strong> $<%= generalStatistics.total_bonus.toFixed(2) %></p>
+                    <p><strong>Total Deducciones:</strong> $<%= generalStatistics.total_deductions.toFixed(2) %></p>
+                    <p><strong>Neto Total:</strong> $<%= generalStatistics.net_total.toFixed(2) %></p>
+                </div>
+            </div>
+            <div class="column is-half">
+                <div class="box has-background-info-light">
+                    <p><strong>Salario Promedio:</strong> $<%= generalStatistics.average_salary.toFixed(2) %></p>
+                    <p><strong>Bono Promedio:</strong> $<%= generalStatistics.average_bonus.toFixed(2) %></p>
+                    <p><strong>Deducción Promedio:</strong> $<%= generalStatistics.average_deductions.toFixed(2) %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

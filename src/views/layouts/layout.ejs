@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Sistema de Nóminas</title>
+    <style>
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .section {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar is-dark">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/reports/payroll">
+                <span class="icon">
+                    <i class="fas fa-chart-bar"></i>
+                </span>
+                <strong>&nbsp;NóminasApp</strong>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/employees" class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span>&nbsp;Empleados</span>
+                </a>
+                <a href="/departments" class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-building"></i>
+                    </span>
+                    <span>&nbsp;Departamentos</span>
+                </a>
+                <a href="/positions" class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-chair"></i>
+                    </span>
+                    <span>&nbsp;Puestos</span>
+                </a>
+                <a href="/payrolls" class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </span>
+                    <span>&nbsp;Nóminas</span>
+                </a>
+                <a href="/benefits" class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-gift"></i>
+                    </span>
+                    <span>&nbsp;Beneficios</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <%- body %>
+        </div>
+    </section>
+
+    <!-- SweetAlert and Navbar Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Navbar burger functionality for mobile view
+        document.addEventListener("DOMContentLoaded", () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
+
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener("click", () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle("is-active");
+                        $target.classList.toggle("is-active");
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

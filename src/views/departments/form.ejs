@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= department ? "Editar Departamento" : "Agregar Nuevo Departamento" %></h1>
+        <form action="<%= department ? `/departments/edit/${department.id}` : '/departments/create' %>" method="POST">
+            <div class="field">
+                <label class="label" for="name">Nombre del Departamento</label>
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Nombre del departamento"
+                        value="<%= department ? department.name : '' %>"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">Guardar</button>
+                </div>
+                <div class="control">
+                    <a href="/departments" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

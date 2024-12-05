@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4"><%= benefit ? "Editar Beneficio" : "Agregar Nuevo Beneficio" %></h1>
+        <form action="<%= benefit ? `/benefits/edit/${benefit.id}` : '/benefits/create' %>" method="POST">
+            <div class="field">
+                <label class="label" for="name">Nombre del Beneficio</label>
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Nombre del beneficio"
+                        value="<%= benefit ? benefit.name : '' %>"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="amount">Monto</label>
+                <div class="control">
+                    <input
+                        class="input"
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        placeholder="Monto del beneficio"
+                        value="<%= benefit ? benefit.amount : '' %>"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="employee_id">Empleado</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="employee_id" name="employee_id" required>
+                            <% employees.forEach(employee => { %>
+                                <option value="<%= employee.id %>" <%= benefit && benefit.employee_id === employee.id ? "selected" : "" %>>
+                                    <%= employee.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">Guardar</button>
+                </div>
+                <div class="control">
+                    <a href="/benefits" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

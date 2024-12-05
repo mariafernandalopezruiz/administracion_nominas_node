@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="box">
+        <h1 class="title is-4">Departamentos</h1>
+
+        <table class="table is-bordered is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% departments.forEach((department, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= department.name %></td>
+                        <td>
+                            <a href="/departments/edit/<%= department.id %>" class="button is-small is-info">Editar</a>
+                            <a href="/departments/delete/<%= department.id %>" class="button is-small is-danger delete-button">Eliminar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/departments/create" class="button is-link mt-3">Agregar Nuevo Departamento</a>
+    </div>
+</div>
